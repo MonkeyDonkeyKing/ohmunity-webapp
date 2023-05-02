@@ -5,18 +5,22 @@
       <p>{{ pubDate }}</p>
       <p>{{ id }}</p>
       <p>{{ desc }}</p>
+      <p>{{ kind }}</p>
+      <p>{{ referent }}</p>
       <a :href="link">Read more</a>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps } from 'vue';
 
 defineProps({
   id: String,
   title: String,
   desc: String,
+  kind: String,
+  referent: String,
   pubDate: String,
   link: String,
   image: String,
