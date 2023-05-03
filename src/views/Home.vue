@@ -69,7 +69,6 @@ export default defineComponent({
         let description = matches[1].trim();
         let referent = matches[2].trim();
         let art = matches[3].trim();
-
         itemDetails.push({
           description: description,
           kind: art,
@@ -104,3 +103,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+.main-events {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
