@@ -18,6 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import RSSItem from '../components/RSSItem.vue';
+import BaseParser from '../components/BaseParser.vue';
 import { parseStringPromise } from 'xml2js';
 import { RSSFeedItem } from '../models/RSSFeedItem';
 
@@ -44,7 +45,7 @@ export default defineComponent({
   },
   async mounted() {
     const res = await fetch(
-      'https://api.allorigins.win/get?url=https://www.th-nuernberg.de/veranstaltungen/calendarRSS.xml/?tx_calendarize_calendar%5Bhmac%5D=c0569a82c2f7bf5c6b9baecdbe33b9daedad34bc&cHash=ab3a728eae761411bc509110ae70b0fe'
+      'https://api.allorigins.win/get?url=https://www.th-nuernberg.de/veranstaltungen/calendarRSS.xml/'
     );
     const contents = await res.json();
     const feed = new window.DOMParser().parseFromString(
@@ -56,6 +57,7 @@ export default defineComponent({
     // Content ist abgeholt aber noch nicht geparst
     const parsedContent = this.parseXML(contents.contents);
     let itemDetails: RSSFeedItem[] = [];
+
     await parsedContent.then((res) => {
       res.rss.channel[0].item.forEach((item: any) => {
         // Bereinigung der HTML Tags
@@ -69,6 +71,7 @@ export default defineComponent({
         let description = matches[1].trim();
         let referent = matches[2].trim();
         let art = matches[3].trim();
+        art = art.replace(/&nbsp;/g, '');
 
         itemDetails.push({
           description: description,
@@ -78,9 +81,15 @@ export default defineComponent({
       });
     });
 
+    let baseLink = 'https://www.th-nuernberg.de/veranstaltungen/';
+    let test: string | undefined;
     this.items = [...items].map((el, index) => {
+      let guid = el?.querySelector('link')?.innerHTML;
+      if (baseLink != undefined && guid != undefined) {
+        test = baseLink + guid[index];
+      }
       return {
-        link: el?.querySelector('link')?.innerHTML,
+        link: test,
         title: el?.querySelector('title')?.innerHTML,
         description: itemDetails[index].description,
         kind: itemDetails[index].kind,
