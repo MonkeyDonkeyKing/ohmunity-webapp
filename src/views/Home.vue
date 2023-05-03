@@ -113,3 +113,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+.main-events {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
