@@ -42,7 +42,7 @@ be = backend stuff
 git commit -m "(chore): Initialisierung"
 ```
 
-danach repo pushen
+danach repo pushen...
 
 ```
 git push origin <branch-name>
