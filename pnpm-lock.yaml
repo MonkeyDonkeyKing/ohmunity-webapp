@@ -25,6 +25,9 @@ dependencies:
   vue:
     specifier: ^3.2.13
     version: 3.2.47
+  vue-router:
+    specifier: ^4.0.13
+    version: 4.0.13(vue@3.2.47)
   xml2js:
     specifier: ^0.5.0
     version: 0.5.0
@@ -2252,6 +2255,10 @@ packages:
       - walrus
       - whiskers
     dev: true
+
+  /@vue/devtools-api@6.5.0:
+    resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
+    dev: false
 
   /@vue/eslint-config-typescript@9.1.0(@typescript-eslint/eslint-plugin@5.4.0)(@typescript-eslint/parser@5.4.0)(eslint-plugin-vue@8.0.3)(eslint@7.32.0)(typescript@4.5.5):
     resolution: {integrity: sha512-j/852/ZYQ5wDvCD3HE2q4uqJwJAceer2FwoEch1nFo+zTOsPrbzbE3cuWIs3kvu5hdFsGTMYwRwjI6fqZKDMxQ==}
@@ -6979,6 +6986,15 @@ packages:
       watchpack: 2.4.0
       webpack: 5.81.0
     dev: true
+
+  /vue-router@4.0.13(vue@3.2.47):
+    resolution: {integrity: sha512-LmXrC+BkDRLak+d5xTMgUYraT3Nj0H/vCbP+7usGvIl9Viqd1UP6AsP0i69pSbn9O0dXK/xCdp4yPw21HqV9Jw==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+      vue: 3.2.47
+    dev: false
 
   /vue-style-loader@4.1.3:
     resolution: {integrity: sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg==}

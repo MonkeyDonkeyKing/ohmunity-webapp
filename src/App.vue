@@ -1,120 +1,70 @@
 <template>
-  <div class="container">
-    <section class="main-events">
-      <img alt="logo" src="./assets/logo.png" />
-      <RSSItem
-        :link="item.link"
-        :title="item.title"
-        :desc="item.description"
-        :kind="item.kind"
-        :referent="item.referent"
-        :pubDate="item.pubDate"
-        :key="item.guid"
-        v-for="item in items"
-      ></RSSItem>
-    </section>
-  </div>
+  <nav class="navbar">
+    <img alt="logo" src="./assets/logo.png" />
+    <div class="spanner"></div>
+    <div class="navbar-brand">
+      <router-link class="navbar-item" to="/">Home</router-link>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <router-link class="navbar-item" to="/map">Kampusmap</router-link>
+      </div>
+    </div>
+  </nav>
+  <router-view />
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
-import RSSItem from './components/RSSItem.vue';
-import { parseStringPromise } from 'xml2js';
-import { RSSFeedItem } from './models/RSSFeedItem';
 
 export default defineComponent({
   name: 'ohmunity-webapp',
   data: function () {
-    return {
-      items: [
-        {
-          title: 'Große VA 1',
-          description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, fuga?',
-          kind: 'Vorlesung',
-          referent: 'Prof. Dr. Max Mustermann',
-          guid: '1',
-          link: 'https://www.google.com',
-          pubDate: 'Heute',
-        },
-      ] as RSSFeedItem[],
-    };
-  },
-  components: {
-    RSSItem,
-  },
-  async mounted() {
-    const res = await fetch(
-      'https://api.allorigins.win/get?url=https://www.th-nuernberg.de/veranstaltungen/calendarRSS.xml/?tx_calendarize_calendar%5Bhmac%5D=c0569a82c2f7bf5c6b9baecdbe33b9daedad34bc&cHash=ab3a728eae761411bc509110ae70b0fe'
-    );
-    const contents = await res.json();
-    const feed = new window.DOMParser().parseFromString(
-      contents.contents,
-      'text/xml'
-    );
-    const items = feed.querySelectorAll('item');
-
-    // Content ist abgeholt aber noch nicht geparst
-    const parsedContent = this.parseXML(contents.contents);
-    let itemDetails: RSSFeedItem[] = [];
-    await parsedContent.then((res) => {
-      res.rss.channel[0].item.forEach((item: any) => {
-        // Bereinigung der HTML Tags
-        const regexTags = /<[^>]+>/g;
-        const output = item.description[0].replace(regexTags, '');
-
-        // Bereinigung des Textes
-        const regexParts =
-          /Beschreibung:\s*(.*)\s*Referent\*in:\s*(.*)\s*Art:\s*(.*)/s;
-        let matches = output.match(regexParts);
-        let description = matches[1].trim();
-        let referent = matches[2].trim();
-        let art = matches[3].trim();
-
-        itemDetails.push({
-          description: description,
-          kind: art,
-          referent: referent,
-        });
-      });
-    });
-
-    this.items = [...items].map((el, index) => {
-      return {
-        link: el?.querySelector('link')?.innerHTML,
-        title: el?.querySelector('title')?.innerHTML,
-        description: itemDetails[index].description,
-        kind: itemDetails[index].kind,
-        referent: itemDetails[index].referent,
-        guid: el?.querySelector('guid')?.innerHTML,
-        pubDate: el?.querySelector('pubDate')?.innerHTML,
-      };
-    });
-  },
-  methods: {
-    async parseXML(content: string) {
-      const xmlString = content;
-
-      try {
-        const result = await parseStringPromise(xmlString);
-        return result;
-      } catch (error) {
-        console.error(error);
-      }
-    },
+    return {};
   },
 });
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin: 0;
 }
-.container {
+.navbar {
+  background-color: #fafafa;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.navbar img {
+  height: 2rem;
+}
+
+.navbar .spanner {
+  width: 80%;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand .navbar-item {
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+.navbar-item {
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
+  margin-right: 1rem;
+  transition: color 0.2s ease-in-out;
+  font-size: 1.5rem;
+}
+
+.navbar-item:hover {
+  color: #e67e22;
 }
 </style>
