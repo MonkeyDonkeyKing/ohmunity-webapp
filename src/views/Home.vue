@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <h1>RSS Feed von Ohm</h1>
+    <div v-if="isLoading" class="loader">
+      <PulseLoader />
+    </div>
     <section class="main-events">
       <RSSItem
         :link="item.link"
@@ -20,27 +24,19 @@ import { defineComponent } from 'vue';
 import RSSItem from '../components/RSSItem.vue';
 import { parseStringPromise } from 'xml2js';
 import { RSSFeedItem } from '../models/RSSFeedItem';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 
 export default defineComponent({
   name: 'app-home',
   data: function () {
     return {
-      items: [
-        {
-          title: 'Große VA 1',
-          description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, fuga?',
-          kind: 'Vorlesung',
-          referent: 'Prof. Dr. Max Mustermann',
-          guid: '1',
-          link: 'https://www.google.com',
-          pubDate: 'Heute',
-        },
-      ] as RSSFeedItem[],
+      isLoading: true,
+      items: [] as RSSFeedItem[],
     };
   },
   components: {
     RSSItem,
+    PulseLoader,
   },
   async mounted() {
     const res = await fetch(
@@ -97,6 +93,7 @@ export default defineComponent({
         pubDate: el?.querySelector('pubDate')?.innerHTML,
       };
     });
+    this.isLoading = false;
   },
   methods: {
     async parseXML(content: string) {
@@ -115,10 +112,23 @@ export default defineComponent({
 
 <style>
 .container {
-  max-width: 1440px;
   width: 100%;
-  margin: 0 auto;
+  margin-top: 2rem;
 }
+
+.loader {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scale: 1.5;
+}
+
+.container h1 {
+  margin-left: 2rem;
+}
+
 .main-events {
   display: flex;
   justify-content: space-between;

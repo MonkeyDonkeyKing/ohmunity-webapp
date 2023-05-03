@@ -28,6 +28,9 @@ dependencies:
   vue-router:
     specifier: ^4.0.13
     version: 4.0.13(vue@3.2.47)
+  vue-spinner:
+    specifier: ^1.0.4
+    version: 1.0.4
   xml2js:
     specifier: ^0.5.0
     version: 0.5.0
@@ -6994,6 +6997,10 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.5.0
       vue: 3.2.47
+    dev: false
+
+  /vue-spinner@1.0.4:
+    resolution: {integrity: sha512-GNG2F+8BLX201JT/jUX+84Gsi3ZteVQwt9K7mues3ts9FcQ95dGn7uu6a5ndSxdYYUEzfh1KngZiOE0u+l4itA==}
     dev: false
 
   /vue-style-loader@4.1.3:
