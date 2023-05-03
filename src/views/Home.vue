@@ -18,7 +18,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import RSSItem from '../components/RSSItem.vue';
-import BaseParser from '../components/BaseParser.vue';
 import { parseStringPromise } from 'xml2js';
 import { RSSFeedItem } from '../models/RSSFeedItem';
 
@@ -114,7 +113,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 .container {
   max-width: 1440px;
   width: 100%;
@@ -123,5 +122,12 @@ export default defineComponent({
 .main-events {
   display: flex;
   justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-events {
+    flex-direction: column;
+    width: 66rem;
+  }
 }
 </style>
