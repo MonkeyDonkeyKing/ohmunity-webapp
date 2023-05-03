@@ -137,7 +137,6 @@ export default defineComponent({
 @media only screen and (max-width: 600px) {
   .main-events {
     flex-direction: column;
-    width: 66rem;
   }
 }
 </style>
