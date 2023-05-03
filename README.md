@@ -2,7 +2,7 @@
 
 Hallo Entwickler Team,
 
-schön das ihr hier seit. Bitte zunächst das setup machen.
+schön das ihr hier seit.
 
 Ich habe hierfür den pnPM als package manager genommen.
 Falls noch nicht getan bitte NodeJS installieren und NVM.
