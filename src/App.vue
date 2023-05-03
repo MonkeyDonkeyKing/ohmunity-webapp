@@ -1,15 +1,19 @@
 <template>
-  <img alt="logo" src="./assets/logo.png" />
-  <RSSItem
-    :link="item.link"
-    :title="item.title"
-    :desc="item.description"
-    :kind="item.kind"
-    :referent="item.referent"
-    :pubDate="item.pubDate"
-    :key="item.guid"
-    v-for="item in items"
-  ></RSSItem>
+  <div class="container">
+    <section class="main-events">
+      <img alt="logo" src="./assets/logo.png" />
+      <RSSItem
+        :link="item.link"
+        :title="item.title"
+        :desc="item.description"
+        :kind="item.kind"
+        :referent="item.referent"
+        :pubDate="item.pubDate"
+        :key="item.guid"
+        v-for="item in items"
+      ></RSSItem>
+    </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -110,5 +114,7 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.container {
 }
 </style>
