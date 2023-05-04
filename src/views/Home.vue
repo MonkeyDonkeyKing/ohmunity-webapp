@@ -17,6 +17,9 @@
       ></RSSItem>
     </section>
   </div>
+  <div class="container">
+    <h1>RSS Feed Allgemein</h1>
+  </div>
 </template>
 
 <script lang="ts">
@@ -51,7 +54,7 @@ export default defineComponent({
 
     // Content ist abgeholt aber noch nicht geparst
     const parsedContent = this.parseXML(contents.contents);
-    let itemDetails: RSSFeedItem[] = [];
+    const itemDetails: RSSFeedItem[] = [];
 
     await parsedContent.then((res) => {
       res.rss.channel[0].item.forEach((item: any) => {
@@ -62,9 +65,9 @@ export default defineComponent({
         // Bereinigung des Textes
         const regexParts =
           /Beschreibung:\s*(.*)\s*Referent\*in:\s*(.*)\s*Art:\s*(.*)/s;
-        let matches = output.match(regexParts);
-        let description = matches[1].trim();
-        let referent = matches[2].trim();
+        const matches = output.match(regexParts);
+        const description = matches[1].trim();
+        const referent = matches[2].trim();
         let art = matches[3].trim();
         art = art.replace(/&nbsp;/g, '');
 
@@ -76,10 +79,10 @@ export default defineComponent({
       });
     });
 
-    let baseLink = 'https://www.th-nuernberg.de/veranstaltungen/';
+    const baseLink = 'https://www.th-nuernberg.de/veranstaltungen/';
     let test: string | undefined;
     this.items = [...items].map((el, index) => {
-      let guid = el?.querySelector('link')?.innerHTML;
+      const guid = el?.querySelector('link')?.innerHTML;
       if (baseLink != undefined && guid != undefined) {
         test = baseLink + guid[index];
       }
