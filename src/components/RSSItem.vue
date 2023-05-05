@@ -10,21 +10,19 @@
       </div>
     </div>
   </div>
-  <div v-if="isOpen">
-    <div class="overlay" @click="isOpen = false">
-      <div class="modal" @click.stop>
-        <div class="modal-header">
-          <h3>{{ title }}</h3>
-        </div>
-        <div class="modal-body">
-          <p>{{ desc }}</p>
-          <p>{{ kind }}</p>
-          <p>{{ referent }}</p>
-          <p>{{ link }}</p>
-        </div>
-        <div class="modal-footer">
-          <button class="close-button" @click="isOpen = false">Close</button>
-        </div>
+  <div v-if="isOpen" class="overlay" @click="isOpen = false">
+    <div class="modal" @click.stop>
+      <div class="modal-header">
+        <h3>{{ title }}</h3>
+      </div>
+      <div class="modal-body">
+        <p>{{ desc }}</p>
+        <strong>{{ kind }}</strong>
+        <p>{{ referent }}</p>
+        <p>{{ link }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="close-button" @click="isOpen = false">Close</button>
       </div>
     </div>
   </div>
@@ -53,12 +51,6 @@ export default {
 
 <style>
 .item-container {
-  /*max-height: 400px;*/
-  /*height: 400px;*/
-  /*width: 32%;*/
-  /*display: flex;*/
-  /*flex-direction: column;*/
-
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -141,11 +133,15 @@ a.btn-more:hover {
   z-index: 1000;
   background-color: white;
   max-width: 800px;
-  padding: 1rem;
+  padding: 2.125rem;
   border-radius: 0.25rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
-
+.modal h3 {
+  font-size: 1.7rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -155,6 +151,7 @@ a.btn-more:hover {
 
 .modal-body {
   margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .modal-body p {

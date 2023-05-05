@@ -136,13 +136,13 @@ export default defineComponent({
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(375px, 0));
+  grid-template-columns: repeat(auto-fill, minmax(375px, 32%));
   grid-auto-rows: 450px;
   gap: 10px;
   justify-content: center;
 }
-.main-events h1 {
-  margin-left: 2rem;
+h1 {
+  margin-left: 1rem;
 }
 
 @media only screen and (max-width: 600px) {
