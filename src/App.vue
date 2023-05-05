@@ -14,15 +14,20 @@
     </div>
   </nav>
   <router-view />
+  <demo-banner></demo-banner>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import DemoBanner from './components/DemoBanner.vue';
 
 export default defineComponent({
   name: 'ohmunity-webapp',
   data: function () {
     return {};
+  },
+  components: {
+    DemoBanner,
   },
 });
 </script>
