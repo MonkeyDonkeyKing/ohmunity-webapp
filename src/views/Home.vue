@@ -136,8 +136,14 @@ export default defineComponent({
 }
 
 .main-events {
-  display: flex;
-  justify-content: space-between;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(375px, 0));
+  grid-auto-rows: 450px;
+  gap: 10px;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 600px) {
