@@ -138,7 +138,6 @@ export default defineComponent({
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(375px, 32%));
   grid-auto-rows: 450px;
-  gap: 10px;
   justify-content: center;
 }
 h1 {
