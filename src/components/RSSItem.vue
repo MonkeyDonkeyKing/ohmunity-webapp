@@ -1,32 +1,29 @@
 <template>
-  <div>
-    <div class="item-container">
-      <div class="card">
-        <p class="title">{{ title }}</p>
-        <p class="date">{{ pubDate }}</p>
-        <p class="event-desc">{{ desc }}</p>
-        <p class="event-type">{{ kind }}</p>
-        <p class="referent">{{ referent }}</p>
-        <div class="cta-box">
-          <a class="btn-more" @click="isOpen = true">Read more</a>
-        </div>
+  <div class="item-container">
+    <div class="card">
+      <p class="title">{{ title }}</p>
+      <p class="date">{{ pubDate }}</p>
+      <p class="event-desc">{{ desc }}</p>
+      <p class="referent">{{ referent }}</p>
+      <div class="cta-box">
+        <a class="btn-more" @click="isOpen = true">Read more</a>
       </div>
     </div>
-    <div v-if="isOpen">
-      <div class="overlay" @click="isOpen = false">
-        <div class="modal" @click.stop>
-          <div class="modal-header">
-            <h3>{{ title }}</h3>
-          </div>
-          <div class="modal-body">
-            <p>{{ desc }}</p>
-            <p>{{ kind }}</p>
-            <p>{{ referent }}</p>
-            <p>{{ link }}</p>
-          </div>
-          <div class="modal-footer">
-            <button class="close-button" @click="isOpen = false">Close</button>
-          </div>
+  </div>
+  <div v-if="isOpen">
+    <div class="overlay" @click="isOpen = false">
+      <div class="modal" @click.stop>
+        <div class="modal-header">
+          <h3>{{ title }}</h3>
+        </div>
+        <div class="modal-body">
+          <p>{{ desc }}</p>
+          <p>{{ kind }}</p>
+          <p>{{ referent }}</p>
+          <p>{{ link }}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="close-button" @click="isOpen = false">Close</button>
         </div>
       </div>
     </div>
@@ -56,10 +53,12 @@ export default {
 
 <style scoped>
 .item-container {
-  max-height: 400px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
+  /*max-height: 400px;*/
+  /*height: 400px;*/
+  /*width: 32%;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -77,18 +76,31 @@ export default {
   flex-direction: column;
   padding: 20px;
   height: 100%;
+  max-height: 360px;
 }
 
 .title {
+  height: 85px;
   font-size: 2.2rem;
   margin: 0;
   font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .event-desc {
   max-height: 80px;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.referent {
+  max-height: 80px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
