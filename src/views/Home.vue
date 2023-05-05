@@ -19,12 +19,14 @@
   </div>
   <div class="container">
     <h1>RSS Feed Allgemein</h1>
+    <RSSParser />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import RSSItem from '../components/RSSItem.vue';
+import RSSParser from '../components/RSSParser.vue';
 import { parseStringPromise } from 'xml2js';
 import { RSSFeedItem } from '../models/RSSFeedItem';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
@@ -40,6 +42,7 @@ export default defineComponent({
   components: {
     RSSItem,
     PulseLoader,
+    RSSParser,
   },
   async mounted() {
     const res = await fetch(
