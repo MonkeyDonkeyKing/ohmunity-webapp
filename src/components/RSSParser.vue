@@ -1,12 +1,14 @@
 <template>
-  <div v-for="item in feed" v-bind:key="item.guid">
-    <h2>{{ item.title }}</h2>
-    <ul>
-      <li>
-        <a>{{ item.link }}</a>
-        <p>{{ item.description }}</p>
-      </li>
-    </ul>
+  <div v-for="item in feed" v-bind:key="item.guid" class="item-container">
+    <section class="card">
+      <h2 class="title">{{ item.title }}</h2>
+      <ul>
+        <li>
+          <a>{{ item.link }}</a>
+          <p class="event-desc">{{ item.description }}</p>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 

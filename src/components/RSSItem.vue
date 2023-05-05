@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .item-container {
   /*max-height: 400px;*/
   /*height: 400px;*/

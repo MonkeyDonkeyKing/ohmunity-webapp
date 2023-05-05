@@ -17,8 +17,8 @@
       ></RSSItem>
     </section>
   </div>
-  <div class="container">
-    <h1>RSS Feed Allgemein</h1>
+  <h1>RSS Feed Allgemein</h1>
+  <div class="main-events">
     <RSSParser />
   </div>
 </template>
@@ -131,10 +131,6 @@ export default defineComponent({
   scale: 1.5;
 }
 
-.container h1 {
-  margin-left: 2rem;
-}
-
 .main-events {
   max-width: 1440px;
   width: 100%;
@@ -144,6 +140,9 @@ export default defineComponent({
   grid-auto-rows: 450px;
   gap: 10px;
   justify-content: center;
+}
+.main-events h1 {
+  margin-left: 2rem;
 }
 
 @media only screen and (max-width: 600px) {
