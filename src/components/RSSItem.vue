@@ -51,7 +51,7 @@ export default {
 
 <style>
 .item-container {
-  background-color: #fff;
+  background-color: var(--egg);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 15px;
