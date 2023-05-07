@@ -82,15 +82,9 @@ export default defineComponent({
       });
     });
 
-    const baseLink = 'https://www.th-nuernberg.de/veranstaltungen/';
-    let test: string | undefined;
     this.items = [...items].map((el, index) => {
-      const guid = el?.querySelector('link')?.innerHTML;
-      if (baseLink != undefined && guid != undefined) {
-        test = baseLink + guid[index];
-      }
       return {
-        link: test,
+        link: 'test',
         title: el?.querySelector('title')?.innerHTML,
         description: itemDetails[index].description,
         kind: itemDetails[index].kind,
