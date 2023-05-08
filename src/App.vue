@@ -9,7 +9,7 @@
     </div>
     <div class="navbar-menu">
       <div class="navbar-end">
-        <router-link class="navbar-item" to="/map">Campusmap</router-link>
+        <router-link class="navbar-item" to="/map">Campus map</router-link>
       </div>
     </div>
   </nav>
@@ -33,12 +33,24 @@ export default defineComponent({
 </script>
 <style>
 :root {
-  --secondary: #ff6054;
-  --egg: #fbe4d3;
-  --primary: #164247;
+  --text: white;
+  --background: #29556d;
+  --egg: #123c53;
+  --primary: #7092a4;
+  --secondary: #487288;
+  --other: #032538;
 }
 body {
   margin: 0;
+  background-color: var(--background);
+  color: var(--text);
+}
+a:link {
+  color: var(--secondary);
+}
+
+a:visited {
+  color: var(--primary);
 }
 .navbar {
   background-color: var(--secondary);
@@ -79,5 +91,11 @@ body {
 
 .navbar-item:hover {
   color: var(--egg);
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar .spanner {
+    width: 0%;
+  }
 }
 </style>

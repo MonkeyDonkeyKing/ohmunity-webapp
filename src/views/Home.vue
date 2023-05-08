@@ -84,7 +84,7 @@ export default defineComponent({
 
     this.items = [...items].map((el, index) => {
       return {
-        link: 'test',
+        link: 'https://www.th-nuernberg.de/veranstaltungen/',
         title: el?.querySelector('title')?.innerHTML,
         description: itemDetails[index].description,
         kind: itemDetails[index].kind,
@@ -140,7 +140,10 @@ h1 {
 
 @media only screen and (max-width: 600px) {
   .main-events {
-    flex-direction: column;
+    grid-template-columns: repeat(auto-fill, minmax(375px, 100%));
+  }
+  .spanner {
+    width: auto;
   }
 }
 </style>

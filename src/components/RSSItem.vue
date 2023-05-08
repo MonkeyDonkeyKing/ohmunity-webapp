@@ -19,7 +19,7 @@
         <p>{{ desc }}</p>
         <strong>{{ kind }}</strong>
         <p>{{ referent }}</p>
-        <p>{{ link }}</p>
+        <a :href="link" target="_blank">{{ link }}</a>
       </div>
       <div class="modal-footer">
         <button class="close-button" @click="isOpen = false">Close</button>
@@ -103,17 +103,17 @@ export default {
 }
 a.btn-more {
   padding: 4px 7px;
-  background-color: #fff;
-  color: #0077cc;
+  background-color: var(--egg);
+  color: var(--primary);
   border: 1px solid #0077cc;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
 }
 a.btn-more:hover {
-  background-color: #0077cc;
+  background-color: var(--primary);
   color: #fff;
-  border: 1px solid #0077cc;
+  border: 1px solid var(--secondary);
 }
 .overlay {
   position: fixed;
@@ -131,7 +131,7 @@ a.btn-more:hover {
 .modal {
   position: relative;
   z-index: 1000;
-  background-color: white;
+  background-color: var(--egg);
   max-width: 800px;
   padding: 2.125rem;
   border-radius: 0.25rem;
@@ -167,7 +167,7 @@ a.btn-more:hover {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #007aff;
+  color: var(--egg);
   font-size: 1rem;
 }
 </style>
