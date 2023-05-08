@@ -18,7 +18,7 @@ div {
   position: sticky;
   bottom: 0;
   transform: translateY(-2rem);
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 div h1 {

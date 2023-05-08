@@ -20,8 +20,6 @@
         <strong>{{ kind }}</strong>
         <p>{{ referent }}</p>
         <a :href="link" target="_blank">{{ link }}</a>
-      </div>
-      <div class="modal-footer">
         <button class="close-button" @click="isOpen = false">Close</button>
       </div>
     </div>
@@ -158,16 +156,14 @@ a.btn-more:hover {
   margin-bottom: 0.5rem;
 }
 
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .close-button {
-  background-color: transparent;
+  background-color: var(--primary);
   border: none;
   cursor: pointer;
   color: var(--egg);
   font-size: 1rem;
+  width: 100%;
+  height: 3rem;
+  margin-top: 1rem;
 }
 </style>

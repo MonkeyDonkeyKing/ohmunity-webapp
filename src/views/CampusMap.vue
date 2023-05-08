@@ -157,6 +157,7 @@ map area:hover {
   }
   .list {
     width: auto;
+    margin-top: 2rem;
   }
 }
 </style>
