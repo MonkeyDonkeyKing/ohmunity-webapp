@@ -114,6 +114,7 @@ export default defineComponent({
 .container {
   width: 100%;
   margin-top: 2rem;
+  color: var(--text);
 }
 
 .loader {
@@ -136,6 +137,9 @@ export default defineComponent({
 }
 h1 {
   margin-left: 1rem;
+  color: var(--ci-red);
+  text-align: center;
+  font-size: 2.5rem;
 }
 
 @media only screen and (max-width: 600px) {

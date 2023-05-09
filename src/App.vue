@@ -1,13 +1,14 @@
 <template>
   <nav class="navbar">
     <router-link class="navbar-item" to="/">
-      <img alt="logo" src="./assets/logo.png" />
+      <img class="logo" alt="logo" src="./assets/logo.png" />
     </router-link>
     <div class="spanner"></div>
-    <div class="navbar-brand">
-      <router-link class="navbar-item" to="/">Home</router-link>
-    </div>
     <div class="navbar-menu">
+      <hr />
+      <div class="navbar-brand">
+        <router-link class="navbar-item" to="/">Home</router-link>
+      </div>
       <div class="navbar-end">
         <router-link class="navbar-item" to="/map">Campus map</router-link>
       </div>
@@ -33,17 +34,21 @@ export default defineComponent({
 </script>
 <style>
 :root {
-  --text: white;
-  --background: #29556d;
-  --egg: #123c53;
-  --primary: #7092a4;
+  --text: #000;
+  --background: #e7e2e2;
+  --egg: #fae5d4;
+  --egg-light: #f2eae3;
+  --primary: #29556d;
   --secondary: #487288;
-  --other: #032538;
+  --ci-green: #174146;
+  --ci-red: #dc5348;
+  --dark: #032538;
 }
 body {
   margin: 0;
   background-color: var(--background);
   color: var(--text);
+  font-family: Helvetica, Arial, sans-serif;
 }
 a:link {
   color: var(--secondary);
@@ -53,16 +58,34 @@ a:visited {
   color: var(--primary);
 }
 .navbar {
-  background-color: var(--secondary);
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  display: block;
+  position: relative;
   padding: 0.5rem 1rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--egg-light);
+  justify-content: center;
+  text-align: center;
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+hr {
+  position: absolute;
+  border: 0;
+  border-top: 2px solid var(--ci-red);
+  width: 100%;
+  z-index: 0;
+  margin: 0;
+  top: 15px;
 }
 
 .navbar img {
-  height: 2rem;
+  height: 70px;
+  margin-bottom: 0.5rem;
 }
 
 .navbar .spanner {
@@ -72,6 +95,16 @@ a:visited {
 .navbar-brand {
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  background-color: var(--egg-light);
+  padding-left: 1rem;
+}
+
+.navbar-end {
+  position: relative;
+  z-index: 1;
+  background-color: var(--egg-light);
 }
 
 .navbar-brand .navbar-item {
@@ -90,7 +123,7 @@ a:visited {
 }
 
 .navbar-item:hover {
-  color: var(--egg);
+  color: var(--ci-red);
 }
 
 @media only screen and (max-width: 600px) {
