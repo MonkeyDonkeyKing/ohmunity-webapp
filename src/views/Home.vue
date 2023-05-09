@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>RSS Feed von Ohm</h1>
+    <h1>RSS Feed Ohm</h1>
     <div v-if="isLoading" class="loader">
       <PulseLoader />
     </div>
