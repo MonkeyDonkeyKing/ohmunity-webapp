@@ -145,6 +145,14 @@ map area:hover {
   transition: transform 0.3s ease;
 }
 
+@media only screen and (max-width: 1920px) {
+  .list {
+    width: 35%;
+    margin-top: 2rem;
+    margin-left: auto;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   #campus-map {
     transform: translate(-290%, -280%);
@@ -159,14 +167,6 @@ map area:hover {
   .list {
     width: auto;
     margin-top: 2rem;
-  }
-}
-
-@media only screen and (max-width: 1920px) {
-  .list {
-    width: 35%;
-    margin-top: 2rem;
-    margin-left: auto;
   }
 }
 </style>
