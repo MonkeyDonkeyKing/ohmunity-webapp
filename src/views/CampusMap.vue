@@ -126,6 +126,7 @@ export default defineComponent({
 
 .list {
   width: 50%;
+  z-index: 500;
 }
 
 #campus-map {
@@ -158,6 +159,14 @@ map area:hover {
   .list {
     width: auto;
     margin-top: 2rem;
+  }
+}
+
+@media only screen and (max-width: 1920px) {
+  .list {
+    width: 35%;
+    margin-top: 2rem;
+    margin-left: auto;
   }
 }
 </style>
