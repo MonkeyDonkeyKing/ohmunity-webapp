@@ -54,6 +54,7 @@
       </map>
     </section>
     <div v-if="listOpen" class="list">
+      <span class="btn-hide-list" @click="hideList">X</span>
       <div class="item-container" v-for="event in events" :key="event.id">
         <div class="card">
           <p class="title">{{ event.name }}</p>
@@ -110,63 +111,106 @@ export default defineComponent({
     toggleList() {
       this.listOpen = !this.listOpen;
     },
+    hideList() {
+      this.listOpen = false;
+    },
   },
 });
 </script>
 
 <style scoped>
 .map-container {
-  height: 100vh;
-  width: 50%;
+  width: 65%;
 }
 
 .map-list-wrapper {
   display: flex;
+  overflow: hidden;
 }
 
 .list {
-  width: 50%;
+  width: 30%;
   z-index: 500;
+  height: 45rem;
+  overflow-y: scroll;
+  padding-top: 2rem;
+  position: relative;
+}
+.btn-hide-list {
+  position: absolute;
+  right: 1.5rem;
+  top: 0;
+  font-size: 2rem;
 }
 
 #campus-map {
-  scale: 0.4;
-  position: absolute;
-  transform: translate(-73%, -73%);
+  scale: 0.35;
+  transform: translate(-90%, -90%);
   filter: grayscale();
 }
 
 map area {
   cursor: pointer;
 }
-/* not working */
-map area:hover {
-  transform: scale(1.2);
-  transition: transform 0.3s ease;
-}
 
-@media only screen and (max-width: 1920px) {
-  .list {
-    width: 35%;
-    margin-top: 2rem;
-    margin-left: auto;
-  }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1440px) {
   #campus-map {
-    transform: translate(-290%, -280%);
-    scale: 0.15;
+    transform: translate(-195%, -190%);
+    scale: 0.2;
   }
   .map-container {
-    height: 42vh;
-  }
-  .map-list-wrapper {
-    flex-direction: column;
+    width: 55%;
   }
   .list {
-    width: auto;
     margin-top: 2rem;
+    width: 45%;
   }
 }
+@media only screen and (max-width: 767px) {
+  #campus-map {
+    transform: translate(-195%, -190%);
+    scale: 0.2;
+  }
+  .list {
+    margin-top: 2rem;
+    position: absolute;
+    right: 1rem;
+    width: 80%;
+    background: var(--background);
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  #campus-map {
+    transform: translate(-285%, -281%);
+    scale: 0.15;
+  }
+  .list {
+    margin-top: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    background: var(--background);
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #campus-map {
+    transform: translate(-364%, -364%);
+    scale: 0.12;
+  }
+}
+/*@media only screen and (max-width: 600px) {*/
+
+/*  .map-container {*/
+/*    height: 42vh;*/
+/*  }*/
+/*  .map-list-wrapper {*/
+/*    flex-direction: column;*/
+/*  }*/
+/*  .list {*/
+/*    width: auto;*/
+/*    margin-top: 2rem;*/
+/*  }*/
+/*}*/
 </style>

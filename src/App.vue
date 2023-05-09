@@ -14,6 +14,12 @@
       </div>
     </div>
   </nav>
+  <div class="container">
+    <hr class="title-line" />
+    <span class="title-container"></span>
+    <h1 class="site-title">OhmUnity</h1>
+    <h2>Übersicht der Events der Technischen Hochschule Ohm</h2>
+  </div>
   <router-view />
   <demo-banner></demo-banner>
 </template>
@@ -50,6 +56,44 @@ body {
   color: var(--text);
   font-family: Helvetica, Arial, sans-serif;
 }
+
+.container {
+  position: relative;
+}
+
+.site-title {
+  font-size: 3.5rem;
+  color: var(--ci-green);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 5;
+  margin-left: 0;
+}
+.title-container {
+  background-color: var(--background);
+  z-index: 1;
+  position: absolute;
+  display: block;
+  width: 400px;
+  height: 4rem;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.title-line {
+  top: 2rem;
+  width: 1440px;
+  max-width: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
 a:link {
   color: var(--secondary);
 }
@@ -65,6 +109,11 @@ a:visited {
   background-color: var(--egg-light);
   justify-content: center;
   text-align: center;
+}
+
+.navbar > a {
+  margin-right: 0;
+  display: inline-block;
 }
 
 .navbar-menu {
