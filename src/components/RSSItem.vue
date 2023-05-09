@@ -49,7 +49,7 @@ export default {
 
 <style>
 .item-container {
-  background-color: var(--egg);
+  background-color: var(--egg-light);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 15px;
@@ -102,8 +102,8 @@ export default {
 a.btn-more {
   padding: 4px 7px;
   background-color: var(--egg);
-  color: var(--primary);
-  border: 1px solid #0077cc;
+  color: var(--dark);
+  border: 1px solid var(--dark);
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
@@ -129,7 +129,7 @@ a.btn-more:hover {
 .modal {
   position: relative;
   z-index: 1000;
-  background-color: var(--egg);
+  background-color: #fff;
   max-width: 800px;
   padding: 2.125rem;
   border-radius: 0.25rem;
@@ -160,10 +160,13 @@ a.btn-more:hover {
   background-color: var(--primary);
   border: none;
   cursor: pointer;
-  color: var(--egg);
+  color: #fff;
   font-size: 1rem;
-  width: 100%;
-  height: 3rem;
+  width: 25%;
+  height: 2.5rem;
   margin-top: 1rem;
+  min-width: 6rem;
+  display: block;
+  float: right;
 }
 </style>
