@@ -17,6 +17,7 @@
           alt="K"
           title="K"
           coords="1436,1398,281"
+          data-coords="1436,1398,281"
           shape="circle"
           @click="toggleList"
         />
@@ -24,6 +25,7 @@
           alt="B"
           title="B"
           coords="1702,2147,189"
+          data-coords="1702,2147,189"
           shape="circle"
           @click="toggleList"
         />
@@ -31,6 +33,7 @@
           alt="W"
           title="W"
           coords="1892,1269,186"
+          data-coords="1892,1269,186"
           shape="circle"
           @click="toggleList"
         />
@@ -38,6 +41,7 @@
           alt="SP"
           title="SP"
           coords="677,926,132"
+          data-coords="677,926,132"
           shape="circle"
           @click="toggleList"
         />
@@ -45,6 +49,7 @@
           alt="H"
           title="H"
           coords="2574,132,133"
+          data-coords="2574,132,133"
           shape="circle"
           @click="toggleList"
         />
@@ -52,6 +57,7 @@
           alt="SG"
           title="SG"
           coords="430,708,134"
+          data-coords="430,708,134"
           shape="circle"
           @click="toggleList"
         />
@@ -124,51 +130,27 @@ export default defineComponent({
 
         const scaleFactorWidth = image.offsetWidth / image.naturalWidth;
         const scaleFactorHeight = image.offsetHeight / image.naturalHeight;
-
         const areas = map.getElementsByTagName('area');
+
         for (let i = 0; i < areas.length; i++) {
           const area = areas[i];
           const coords = area.getAttribute('coords')?.split(',') || [];
+          const origCoords = area.getAttribute('data-coords')?.split(',') || [];
 
           for (let j = 0; j < coords.length; j++) {
             if (j % 2 === 0) {
               coords[j] = String(
-                Math.round(parseFloat(coords[j]) * scaleFactorWidth)
+                Math.round(parseFloat(origCoords[j]) * scaleFactorWidth)
               );
             } else {
               coords[j] = String(
-                Math.round(parseFloat(coords[j]) * scaleFactorHeight)
+                Math.round(parseFloat(origCoords[j]) * scaleFactorHeight)
               );
             }
           }
-
           area.setAttribute('coords', coords.join(','));
         }
       }, 200);
-    },
-    calculateScaleFactor() {
-      const image = this.$refs.mapImage as HTMLImageElement;
-      const originalWidth = image.naturalWidth;
-      const scaledWidth = image.clientWidth;
-      const scaleFactor = scaledWidth / originalWidth;
-      console.log(scaleFactor);
-      return scaleFactor;
-    },
-    scaleCoordinates(scaleFactor: number) {
-      const image = this.$refs.mapImage as HTMLImageElement;
-      const areas = image.nextElementSibling?.getElementsByTagName(
-        'area'
-      ) as HTMLCollectionOf<HTMLAreaElement>;
-
-      for (let i = 0; i < areas.length; i++) {
-        const originalCoords = areas[i]
-          .getAttribute('coords')!
-          .split(',') as string[];
-        const scaledCoords = originalCoords.map((coord) =>
-          Math.round(parseInt(coord, 10) * scaleFactor)
-        );
-        areas[i].setAttribute('coords', scaledCoords.join(','));
-      }
     },
     toggleList() {
       this.listOpen = !this.listOpen;
@@ -192,12 +174,21 @@ export default defineComponent({
 p {
   text-align: center;
 }
-/*.map-container {*/
-/*  width: 65%;*/
-/*}*/
 
 .map-list-wrapper {
   display: flex;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.map-container {
+  overflow-x: auto;
+}
+
+.map-container img {
+  display: block;
+  max-width: 70%;
+  height: auto;
 }
 
 .list {
@@ -225,13 +216,23 @@ map area:hover {
   cursor: zoom-in;
 }
 
+@media only screen and (max-width: 992px) {
+  .map-container img {
+    max-width: 100%;
+  }
+  .list {
+    background-color: var(--background);
+    width: 45%;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .list {
-    margin-top: 2rem;
+    margin-top: 0;
     position: absolute;
     right: 1rem;
-    width: 80%;
-    background: var(--background);
+    width: 60%;
+    height: 36rem;
   }
 }
 
@@ -242,16 +243,7 @@ map area:hover {
     right: 0;
     width: 100%;
     background: var(--background);
+    height: 28rem;
   }
-}
-
-.map-container {
-  overflow-x: auto;
-}
-
-.map-container img {
-  display: block;
-  max-width: 70%;
-  height: auto;
 }
 </style>
