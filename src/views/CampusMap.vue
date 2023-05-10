@@ -1,5 +1,9 @@
 <template>
   <h1>Campus map</h1>
+  <p>
+    Die markierten runden Bereiche auf der Karte sind klickbar und zeigen Euch,
+    welche Events dort stattfinden.
+  </p>
   <div class="map-list-wrapper">
     <section class="map-container">
       <img
@@ -8,7 +12,7 @@
         usemap="#image-map"
         id="campus-map"
       />
-      <map name="image-map">
+      <map name="image-map" id="image-map">
         <area
           alt="K"
           title="K"
@@ -54,7 +58,7 @@
       </map>
     </section>
     <div v-if="listOpen" class="list">
-      <span class="btn-hide-list" @click="hideList">X</span>
+      <span class="btn-hide-list" title="Schließen" @click="hideList">X</span>
       <div class="item-container" v-for="event in events" :key="event.id">
         <div class="card">
           <p class="title">{{ event.name }}</p>
@@ -105,27 +109,95 @@ export default defineComponent({
           referent: 'Prof. Dr. Sommer',
         },
       ],
+      resizeTimeout: null as ReturnType<typeof setTimeout> | null,
     };
   },
   methods: {
+    adjustCoordinates() {
+      if (this.resizeTimeout) {
+        clearTimeout(this.resizeTimeout);
+      }
+
+      this.resizeTimeout = setTimeout(() => {
+        const image = this.$refs.mapImage as HTMLImageElement;
+        const map = document.getElementById('image-map') as HTMLMapElement;
+
+        const scaleFactorWidth = image.offsetWidth / image.naturalWidth;
+        const scaleFactorHeight = image.offsetHeight / image.naturalHeight;
+
+        const areas = map.getElementsByTagName('area');
+        for (let i = 0; i < areas.length; i++) {
+          const area = areas[i];
+          const coords = area.getAttribute('coords')?.split(',') || [];
+
+          for (let j = 0; j < coords.length; j++) {
+            if (j % 2 === 0) {
+              coords[j] = String(
+                Math.round(parseFloat(coords[j]) * scaleFactorWidth)
+              );
+            } else {
+              coords[j] = String(
+                Math.round(parseFloat(coords[j]) * scaleFactorHeight)
+              );
+            }
+          }
+
+          area.setAttribute('coords', coords.join(','));
+        }
+      }, 200);
+    },
+    calculateScaleFactor() {
+      const image = this.$refs.mapImage as HTMLImageElement;
+      const originalWidth = image.naturalWidth;
+      const scaledWidth = image.clientWidth;
+      const scaleFactor = scaledWidth / originalWidth;
+      console.log(scaleFactor);
+      return scaleFactor;
+    },
+    scaleCoordinates(scaleFactor: number) {
+      const image = this.$refs.mapImage as HTMLImageElement;
+      const areas = image.nextElementSibling?.getElementsByTagName(
+        'area'
+      ) as HTMLCollectionOf<HTMLAreaElement>;
+
+      for (let i = 0; i < areas.length; i++) {
+        const originalCoords = areas[i]
+          .getAttribute('coords')!
+          .split(',') as string[];
+        const scaledCoords = originalCoords.map((coord) =>
+          Math.round(parseInt(coord, 10) * scaleFactor)
+        );
+        areas[i].setAttribute('coords', scaledCoords.join(','));
+      }
+    },
     toggleList() {
       this.listOpen = !this.listOpen;
+      console.log('CLICK');
     },
     hideList() {
       this.listOpen = false;
     },
   },
+  mounted() {
+    this.adjustCoordinates();
+    window.addEventListener('resize', this.adjustCoordinates);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.adjustCoordinates);
+  },
 });
 </script>
 
 <style scoped>
-.map-container {
-  width: 65%;
+p {
+  text-align: center;
 }
+/*.map-container {*/
+/*  width: 65%;*/
+/*}*/
 
 .map-list-wrapper {
   display: flex;
-  overflow: hidden;
 }
 
 .list {
@@ -134,43 +206,26 @@ export default defineComponent({
   height: 45rem;
   overflow-y: scroll;
   padding-top: 2rem;
-  position: relative;
+  position: absolute;
+  right: 0;
 }
 .btn-hide-list {
   position: absolute;
   right: 1.5rem;
   top: 0;
   font-size: 2rem;
-}
-
-#campus-map {
-  scale: 0.35;
-  transform: translate(-90%, -90%);
-  filter: grayscale();
+  cursor: pointer;
 }
 
 map area {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 1440px) {
-  #campus-map {
-    transform: translate(-195%, -190%);
-    scale: 0.2;
-  }
-  .map-container {
-    width: 55%;
-  }
-  .list {
-    margin-top: 2rem;
-    width: 45%;
-  }
+map area:hover {
+  cursor: zoom-in;
 }
+
 @media only screen and (max-width: 767px) {
-  #campus-map {
-    transform: translate(-195%, -190%);
-    scale: 0.2;
-  }
   .list {
     margin-top: 2rem;
     position: absolute;
@@ -181,10 +236,6 @@ map area {
 }
 
 @media only screen and (max-width: 520px) {
-  #campus-map {
-    transform: translate(-285%, -281%);
-    scale: 0.15;
-  }
   .list {
     margin-top: 0;
     position: absolute;
@@ -194,23 +245,13 @@ map area {
   }
 }
 
-@media only screen and (max-width: 400px) {
-  #campus-map {
-    transform: translate(-364%, -364%);
-    scale: 0.12;
-  }
+.map-container {
+  overflow-x: auto;
 }
-/*@media only screen and (max-width: 600px) {*/
 
-/*  .map-container {*/
-/*    height: 42vh;*/
-/*  }*/
-/*  .map-list-wrapper {*/
-/*    flex-direction: column;*/
-/*  }*/
-/*  .list {*/
-/*    width: auto;*/
-/*    margin-top: 2rem;*/
-/*  }*/
-/*}*/
+.map-container img {
+  display: block;
+  max-width: 70%;
+  height: auto;
+}
 </style>
