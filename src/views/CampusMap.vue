@@ -154,7 +154,6 @@ export default defineComponent({
     },
     toggleList() {
       this.listOpen = !this.listOpen;
-      console.log('CLICK');
     },
     hideList() {
       this.listOpen = false;
