@@ -55,17 +55,16 @@ export default defineComponent({
     );
     const items = feed.querySelectorAll('item');
 
-    // Content ist abgeholt aber noch nicht geparst
     const parsedContent = this.parseXML(contents.contents);
     const itemDetails: RSSFeedItem[] = [];
 
     await parsedContent.then((res) => {
       res.rss.channel[0].item.forEach((item: any) => {
-        // Bereinigung der HTML Tags
+        // Clean HTML tags
         const regexTags = /<[^>]+>/g;
         const output = item.description[0].replace(regexTags, '');
 
-        // Bereinigung des Textes
+        // Clean text
         const regexParts =
           /Beschreibung:\s*(.*)\s*Referent\*in:\s*(.*)\s*Art:\s*(.*)/s;
         const matches = output.match(regexParts);

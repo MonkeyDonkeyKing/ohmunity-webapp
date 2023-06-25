@@ -1,16 +1,15 @@
 # ohmunity-app
 
-Hallo Entwickler Team,
+Hello there Developers,
 
-schön das ihr hier seit.
+to get started please follow this readme.
 
-Ich habe hierfür den pnPM als package manager genommen.
-Falls noch nicht getan bitte NodeJS installieren und NVM.
+I used PNPM as package manager As base you need node js installed.
 
 [NodeJS](https://nodejs.org/en)
 [NVM](https://github.com/nvm-sh/nvm/releases)
 
-danach
+then
 
 ```
 npm install -g pnpm
@@ -18,55 +17,49 @@ npm install -g pnpm
 
 ## Project setup
 
+Install all node modules with this command:
+
 ```
 pnpm install
 ```
 
 ## How we work
 
-Bitte immer einen branch erstellen mit command line oder GitHub Desktop App
+Create a branch:
 
 ```
-git checkout -b branch-name-so
+git checkout -b branch-name
 ```
 
-Nun könnt ihr auf euren eigenen branch local arbeiten.
-
-Commit Message bitte in 3 kategorien zur Einfachheit:
+Commit Messages in 3 simply catagories:
 
 ui = frontend stuff
-chore = allgemeines
 be = backend stuff
+chore = everything else
 
 ```
-git commit -m "(chore): Initialisierung"
+git commit -m "(chore): Init"
 ```
 
-danach repo pushen...
+Then push the repo with:
 
 ```
 git push origin <branch-name>
 ```
 
-Auf github gehen und Button PR erstellen drücken und danach mich als Reviewer hinzufügen.
+Navigate to github and open a PR.
 
-### Compiles and hot-reloads for development
+### Local Development
 
-Diesen command braucht ihr zur lokalen Entwicklung
+To develop locally:
 
 ```
 pnpm serve
 ```
 
-### Compiles and minifies for production
-
-Das benötigt man bevor man es auf einen Webserver deployed. Wir werden es in firebase machen.
-
-```
-pnpm build
-```
-
 ### Lints and fixes files
+
+To lint all files run the following command:
 
 ```
 pnpm lint
