@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <router-link class="navbar-item" to="/">
-      <img class="logo" alt="logo" src="./assets/logo.png" />
+      <img class="logo" alt="logo" src="./assets/logo.png" loading="lazy" />
     </router-link>
     <div class="spanner"></div>
     <div class="navbar-menu">

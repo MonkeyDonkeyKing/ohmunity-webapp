@@ -11,6 +11,7 @@
         src="./../assets/CampusMap.png"
         usemap="#image-map"
         id="campus-map"
+        loading="lazy"
       />
       <map name="image-map" id="image-map">
         <area
