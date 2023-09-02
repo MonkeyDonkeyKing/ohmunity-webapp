@@ -59,8 +59,10 @@ export default defineComponent({
     const itemDetails: RSSFeedItem[] = [];
 
     await parsedContent.then((res) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       res.rss.channel[0].item.forEach((item: any) => {
         // Clean HTML tags
+
         const regexTags = /<[^>]+>/g;
         const output = item.description[0].replace(regexTags, '');
 
