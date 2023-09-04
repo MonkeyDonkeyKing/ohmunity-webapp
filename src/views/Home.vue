@@ -61,7 +61,6 @@ export default defineComponent({
     await parsedContent.then((res) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       res.rss.channel[0].item.forEach((item: any) => {
-
         const regexTags = /<[^>]+>/g;
         const output = item.description[0].replace(regexTags, '');
 
