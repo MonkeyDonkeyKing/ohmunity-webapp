@@ -61,12 +61,10 @@ export default defineComponent({
     await parsedContent.then((res) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       res.rss.channel[0].item.forEach((item: any) => {
-        // Clean HTML tags
 
         const regexTags = /<[^>]+>/g;
         const output = item.description[0].replace(regexTags, '');
 
-        // Clean text
         const regexParts =
           /Beschreibung:\s*(.*)\s*Referent\*in:\s*(.*)\s*Art:\s*(.*)/s;
         const matches = output.match(regexParts);
