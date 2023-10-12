@@ -4,7 +4,7 @@ Hello there Developers,
 
 to get started please follow this readme.
 
-I used PNPM as package manager As base you need node js installed.
+I used PNPM as package manager as base you need node js installed.
 
 [NodeJS](https://nodejs.org/en)
 [NVM](https://github.com/nvm-sh/nvm/releases)
